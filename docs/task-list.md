@@ -1,0 +1,65 @@
+## Tasklist
+
+- [x] Project setup
+    - [x] Svelte + SvelteKit
+    - [x] PixiJS
+- [x] Import assets
+    - [x] Background / Environmnet
+    - [x] Merge-3 Monsters 
+    - [x] UI
+- [ ] Scene set up
+    - [x] Background
+    - [x] Foreground
+    - [x] Trees
+    - [ ] Animate Clouds
+    - [ ] Leaf particles
+    - [ ] Reactive effects
+        - [ ] Shake mountains on spin click
+        - [ ] Shake trees
+- [ ] Set up reels
+    - [x] Generate random reels of 30
+    - [ ] Create fixed data (97% RTP)
+    - [x] Basic Spin (only need to draw 4 at a time)
+    - [ ] Set up tweening with GSAP
+    - [ ] Clamp position
+    - [ ] Add left to right delay
+- [ ] User Interface (Copy ui from twist)
+    - [ ] Control Panel
+    - [ ] Spin Button
+    - [ ] Automatic Spin Toggle
+    - [ ] Bet size & buttons
+    - [ ] Balance
+    - [ ] Menu Button
+    - [ ] Menu
+        - [ ] Sound on/off
+        - [ ] Music on/off
+        - [ ] Info
+            - [ ] Paylines
+            - [ ] Paytable 
+    - [ ] Debug Controls
+- [ ] Paytable
+    - [ ] Figure out a rough range (I have 11 symbols - 150 slots in total)
+        - [ ] Common (3 symbols, 0.5x payout, 50% chance - 75)
+        - [ ] Uncommon (3 symbols, 2x payout, 30% chance - 45)
+        - [ ] Rare (3 symbols, 10x payout, 15% chance - 22.5 (23))
+        - [ ] Bonus (2 symbols, 40x payout, 5% chance - 7.5 (7))
+- [ ] Paylines
+    - [ ] Generate rough playlines
+    - [ ] Split bet across each one
+    - [ ] Enable/Disable paylines
+- [ ] Logic
+    - [ ] Evaluate paylines
+- [ ] Debug tools
+    - [ ] Force uncommon win
+    - [ ] Force rare win
+    - [ ] Force bonus round
+- [ ] Slot Animation
+    - [ ] Gentle idle animation
+    - [ ] Win animation
+
+## Future
+- [ ] Utilize AssetPack (recommended by PixiJS)
+- [ ] Polish Paytable
+    - [ ] Tease bonus symbols (show 2 but rarely 3)
+    - [ ] Get to 97% RTP
+- [ ] Switch out common symbols during a bonus round

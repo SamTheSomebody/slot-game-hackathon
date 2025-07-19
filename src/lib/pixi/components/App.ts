@@ -3,8 +3,7 @@ import { DISPLAY } from '$lib/config/display';
 import { Background } from './environment/Background';
 import { Foreground } from './environment/Foreground';
 import { Reels } from './Reels';
-import { SpinButton } from '../ui/SpinButton';
-import { Header } from '../ui/Header';
+import { ControlPanel } from '../ui/ControlPanel';
 
 export class App {
 	app: Application;
@@ -19,16 +18,14 @@ export class App {
 	async init(container: HTMLElement) {
 		await this.app.init({
 			background: '#000000',
-			width: 1280,
-			height: 720
+			width: DISPLAY.width,
+			height: DISPLAY.height
 		});
 		container.appendChild(this.app.canvas);
-
 		await this.addBackground();
 		await this.addForeground();
 		await this.addReels();
-		this.addSpinButton();
-		await this.addHeader();
+		await this.addControlPanel();
 	}
 
 	private async addBackground() {
@@ -49,17 +46,8 @@ export class App {
 		this.stage.addChildAt(this.reels.container, 2);
 	}
 
-	private addSpinButton() {
-		const spinButton = new SpinButton(() => this.reels.spin());
-		spinButton.position = {
-			x: (DISPLAY.width - spinButton.container.width) / 2,
-			y: DISPLAY.height - spinButton.container.height - 20
-		};
-		this.stage.addChild(spinButton.container);
-	}
-
-	private async addHeader() {
-		const header = new Header();
+	private async addControlPanel() {
+		const header = new ControlPanel();
 		await header.load();
 		this.stage.addChild(header.container);
 	}
