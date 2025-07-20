@@ -1,22 +1,28 @@
-import { Color, Container, FillGradient, Graphics, Ticker } from 'pixi.js';
+import { Color, Container, FillGradient, Graphics, Text, Ticker } from 'pixi.js';
 import { Slot } from './Slot';
-import { SLOT_SIZE, SLOT_BUFFER, SLOT_SPEED, SLOT_SPIN_TIME } from '$lib/config/slot';
+import { SLOT_SIZE, SLOT_BUFFER, SLOT_SPIN_TIME } from '$lib/config/slot';
+import { DebugContainer } from '../debug/container';
+import { easeInOutBack, easeInOutQuad, easeOutBack } from '$lib/utility/ease';
+import { lerp } from '$lib/utility/lerp';
+import { DEBUG_MODE } from '$lib/config/debug';
+import { DEBUG_TEXT_STYLE } from '../debug/text';
 
 const SHOWN_SLOTS = 4;
+const STEP_HEIGHT = SLOT_SIZE + SLOT_BUFFER;
 
 export class Reel {
 	container: Container;
 	slots: Slot[] = [];
-	position: number = 0;
+	index: number = 0;
 	private reelIndex: number = 0;
 	private slotIDs: number[] = [];
 	private ticker?: Ticker;
 	private elapsed = 0;
+	private text: Text;
 
 	constructor(slotIDs: number[], reelIndex: number) {
 		this.container = new Container();
-		this.container.width = SLOT_SIZE;
-		this.container.height = (SLOT_SIZE + SLOT_BUFFER) * 5;
+		this.container.y = -STEP_HEIGHT;
 		const colorEnds = new Color([0, 0, 0, 0]);
 		const gradient = new FillGradient({
 			type: 'linear',
@@ -24,74 +30,95 @@ export class Reel {
 			end: { x: 1, y: 0 },
 			colorStops: [
 				{ offset: 0, color: colorEnds },
-				{ offset: 0.5, color: new Color([0, 0, 0, 0.5]) },
+				{ offset: 0.3, color: new Color([0, 0, 0, 0.3]) },
+				{ offset: 0.7, color: new Color([0, 0, 0, 0.3]) },
 				{ offset: 1, color: colorEnds }
 			]
 		});
-		const background = new Graphics()
-			.rect(0, 0, SLOT_SIZE + 10, (SLOT_SIZE + SLOT_BUFFER) * 5)
-			.fill(gradient);
+		const background = new Graphics().rect(0, 0, SLOT_SIZE + 10, STEP_HEIGHT * 5).fill(gradient);
 		this.container.addChild(background);
 		this.slotIDs = slotIDs;
 		this.reelIndex = reelIndex;
+		this.text = new Text({
+			style: DEBUG_TEXT_STYLE
+		});
+		this.text.position.set(-15, 200);
+		this.container.addChild(this.text);
+		if (DEBUG_MODE) {
+			this.text.text = this.index.toString();
+		}
 	}
 
 	async load(slotIDs: number[]) {
 		this.slots = [];
 		for (let i = 0; i < SHOWN_SLOTS; i++) {
-			const spriteID = slotIDs[i];
 			const slot = new Slot(i);
-			await slot.load(slotIDs[spriteID]);
+			const spriteID = slotIDs[i % slotIDs.length];
+			await slot.load(spriteID);
 			this.slots.push(slot);
-			slot.container.y = SHOWN_SLOTS + i * (SLOT_SIZE + SLOT_BUFFER);
+			slot.container.y = i * STEP_HEIGHT;
 			this.container.addChild(slot.container);
 		}
 	}
 
 	spin(onStop?: () => void) {
 		this.elapsed = 0;
-		this.ticker = new Ticker(); //TODO add tweening
+		const rand = Math.round(10 + Math.random() * 5);
+		const start = this.index;
+		const end = start + rand + this.reelIndex * 5;
+		const time = this.reelIndex * 25 + SLOT_SPIN_TIME;
+		let last = start;
+
+		this.ticker = new Ticker();
 		this.ticker.add((ticker: Ticker) => {
-			for (let i = 0; i < SHOWN_SLOTS; i++) {
-				this.slots[i].container.y += SLOT_SPEED * (this.reelIndex + 1) * ticker.deltaTime;
-			}
-			this.update_position();
-			this.elapsed++;
-			if (this.elapsed >= SLOT_SPIN_TIME + this.reelIndex * 10) {
+			this.elapsed += ticker.deltaTime;
+			const t = this.elapsed / time;
+			const eased = easeOutBack(t);
+			let current = lerp(start, end, eased);
+			if (this.elapsed >= time) {
+				current = end;
 				this.ticker?.stop();
 				this.ticker?.destroy();
 				if (onStop) {
 					onStop();
 				}
 			}
+			this.updateSlotPositions(current % this.slotIDs.length);
+			while (current > last + 0.9) {
+				last++;
+				this.updateIndex();
+			}
 		});
 		this.ticker.start();
 	}
 
-	private update_position() {
-		//TODO ensure that its clamped
-		//Only 4 slots are shown at a time, we have a reel of 30
-		//Position is the currently selected slot
-		//We need to check the bottom most slot
-		//If it is off the screen, we move it to the top and assign the next slot index from the reel
-		const height = 3 * (SLOT_SIZE + SLOT_BUFFER);
-		for (const slot of this.slots) {
-			if (slot.container.y > height) {
-				slot.container.y -= height + SLOT_SIZE + SLOT_BUFFER;
-				slot.load(this.slotIDs[this.position]);
+	private updateSlotPositions(currentDistance: number) {
+		const height = 4 * STEP_HEIGHT;
+		for (let i = 0; i < this.slots.length; i++) {
+			const slot = this.slots[i];
+			if (!slot || !slot.container) {
+				console.warn(`Slot ${i} or its container is null`, slot);
+				continue; // Skip this slot
 			}
-			this.position++;
-			this.position %= this.slotIDs.length;
+			const offset = i * STEP_HEIGHT;
+			const pos = offset + currentDistance * STEP_HEIGHT;
+			slot.container.y = pos % height;
 		}
-		/*
-		const bottomSlotIndex = (this.position + SHOWN_SLOTS - 1) % SHOWN_SLOTS;
-		const bottomSlot = this.slots[bottomSlotIndex];
-		if (bottomSlot.container.y < height) {
-			return;
+	}
+
+	private updateIndex() {
+		this.index++;
+		this.index %= this.slotIDs.length;
+		if (DEBUG_MODE) {
+			this.text.text = this.index.toString();
 		}
-		bottomSlot.container.y -= height;
-		console.log(bottomSlotIndex, bottomSlot);
-		const nextIndex = (this.position + SHOWN_SLOTS) % this.slotIDs.length;
-		bottomSlot.load(this.slotIDs[nextIndex]);*/
+		let topSlot = this.slots[0];
+		for (let i = 1; i < this.slots.length; i++) {
+			if (this.slots[i].container.y > topSlot.container.y) {
+				topSlot = this.slots[i];
+			}
+		}
+		const nextSymbolIndex = (this.index + SHOWN_SLOTS) % this.slotIDs.length;
+		topSlot.load(this.slotIDs[nextSymbolIndex]);
 	}
 }

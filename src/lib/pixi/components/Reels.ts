@@ -2,20 +2,25 @@ import { Container, Graphics } from 'pixi.js';
 import { Reel } from './Reel';
 import { DISPLAY } from '$lib/config/display';
 import { SLOT_BUFFER, SLOT_SIZE } from '$lib/config/slot';
+import { spinCompleted, spinRequested } from '$lib/stores/gameState';
 
 export class Reels {
-	spinningReels: number;
+	spinningReels: number = 0;
 	container: Container;
 	reels: Reel[] = [];
 
 	constructor() {
 		this.container = new Container({
 			x: (DISPLAY.width - (SLOT_SIZE + SLOT_BUFFER) * 5) / 2,
-			y: (DISPLAY.height - (SLOT_SIZE + SLOT_BUFFER) * 3) / 2,
-			width: (SLOT_BUFFER + SLOT_SIZE) * 5,
-			height: (SLOT_BUFFER + SLOT_SIZE) * 3
+			y: (DISPLAY.height - (SLOT_SIZE + SLOT_BUFFER) * 3) / 2
 		});
-		this.spinningReels = 0;
+
+		spinRequested.subscribe((requested) => {
+			if (requested) {
+				this.spin();
+				spinRequested.update(() => false);
+			}
+		});
 	}
 
 	async load(reelsData: number[][]) {
@@ -41,10 +46,14 @@ export class Reels {
 		if (this.spinningReels > 0) {
 			return;
 		}
+		spinCompleted.update(() => false);
 		this.spinningReels = 5;
 		this.reels.forEach((reel) =>
 			reel.spin(() => {
 				this.spinningReels--;
+				if (this.spinningReels <= 0) {
+					spinCompleted.update(() => true);
+				}
 			})
 		);
 	}

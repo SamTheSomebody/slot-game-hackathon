@@ -1,14 +1,12 @@
 import { Application, Container } from 'pixi.js';
 import { DISPLAY } from '$lib/config/display';
-import { Background } from './environment/Background';
-import { Foreground } from './environment/Foreground';
 import { Reels } from './Reels';
 import { ControlPanel } from '../ui/ControlPanel';
+import { Environment } from './Environment';
 
 export class App {
 	app: Application;
 	stage: Container;
-	reels!: Reels;
 
 	constructor() {
 		this.app = new Application();
@@ -19,37 +17,24 @@ export class App {
 		await this.app.init({
 			background: '#000000',
 			width: DISPLAY.width,
-			height: DISPLAY.height
+			height: DISPLAY.height,
+			antialias: true
 		});
 		container.appendChild(this.app.canvas);
-		await this.addBackground();
-		await this.addForeground();
-		await this.addReels();
-		await this.addControlPanel();
-	}
 
-	private async addBackground() {
-		const background = new Background();
-		await background.load();
-		this.stage.addChildAt(background.container, 0);
-	}
+		this.stage.sortableChildren = true;
+		const environment = new Environment();
+		await environment.load();
 
-	private async addForeground() {
-		const foreground = new Foreground();
-		await foreground.load();
-		this.stage.addChildAt(foreground.container, 1);
-	}
+		const reels = new Reels();
+		await reels.load(this.generateRandomReels());
+		reels.container.zIndex = 1;
 
-	private async addReels() {
-		this.reels = new Reels();
-		await this.reels.load(this.generateRandomReels());
-		this.stage.addChildAt(this.reels.container, 2);
-	}
+		const controlPanel = new ControlPanel();
+		await controlPanel.load();
+		controlPanel.container.zIndex = 99;
 
-	private async addControlPanel() {
-		const header = new ControlPanel();
-		await header.load();
-		this.stage.addChild(header.container);
+		this.stage.addChild(environment.container, reels.container, controlPanel.container);
 	}
 
 	private generateRandomReels(count = 5): number[][] {

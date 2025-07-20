@@ -1,22 +1,25 @@
 import { DISPLAY } from '$lib/config/display';
-import { CONTROL_PANEL_HEIGHT, PANEL_ROUNDING } from '$lib/config/ui/ui';
+import { CONTROL_PANEL_BOTTOM_PAD, CONTROL_PANEL_HEIGHT, PANEL_ROUNDING } from '$lib/config/ui/ui';
 import { Color, Container, FillGradient, Graphics } from 'pixi.js';
-import { SpinButton } from '../ui/SpinButton';
+import { SpinPanel } from '../ui/SpinPanel';
 import { MenuButton } from '../ui/MenuButton';
+import { BetPanel } from './BetPanel';
 
 export class ControlPanel {
 	container: Container;
 
 	constructor() {
-		this.container = new Container({
-			width: DISPLAY.width
-		});
+		this.container = new Container();
+		const x = DISPLAY.width * 0.125;
+		const y = DISPLAY.height - CONTROL_PANEL_HEIGHT - CONTROL_PANEL_BOTTOM_PAD;
+		this.container.position.set(x, y);
 	}
 
 	async load() {
 		this.createBackground();
 		await this.addMenuButton();
-		await this.addSpinButton();
+		await this.addSpinPanel();
+		await this.addBetPanel();
 	}
 
 	private createBackground() {
@@ -30,13 +33,7 @@ export class ControlPanel {
 			]
 		});
 		const graphic = new Graphics()
-			.roundRect(
-				(DISPLAY.width * 0.25) / 2,
-				DISPLAY.height - CONTROL_PANEL_HEIGHT - 20,
-				DISPLAY.width * 0.75,
-				CONTROL_PANEL_HEIGHT,
-				PANEL_ROUNDING
-			)
+			.roundRect(0, 0, DISPLAY.width * 0.75, CONTROL_PANEL_HEIGHT, PANEL_ROUNDING)
 			.fill(gradient)
 			.stroke({
 				color: 0x000000,
@@ -49,20 +46,18 @@ export class ControlPanel {
 	private async addMenuButton() {
 		const menuButton = new MenuButton(() => {}); //TODO open menu
 		await menuButton.load();
-		menuButton.container.position.set(
-			(DISPLAY.width * 0.25) / 2,
-			DISPLAY.height - CONTROL_PANEL_HEIGHT - 20
-		);
 		this.container.addChild(menuButton.container);
 	}
 
-	private async addSpinButton() {
-		const spinButton = new SpinButton(() => {}); //TODO spin reels;
-		await spinButton.load();
-		spinButton.container.position.set(
-			DISPLAY.width * 0.75,
-			DISPLAY.height - spinButton.container.height / 2 - 10
-		);
-		this.container.addChild(spinButton.container);
+	private async addSpinPanel() {
+		const spinPanel = new SpinPanel();
+		await spinPanel.load();
+		this.container.addChild(spinPanel.container);
+	}
+
+	private async addBetPanel() {
+		const panel = new BetPanel();
+		await panel.load();
+		this.container.addChild(panel.container);
 	}
 }
