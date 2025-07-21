@@ -1,0 +1,159 @@
+{
+  "frames": {
+    "spider_4.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 177.25,
+        "h": 148.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 148.25
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 148.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "spider_1.png": {
+      "frame": {
+        "x": 180.25,
+        "y": 1,
+        "w": 177,
+        "h": 148.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177,
+        "h": 148.25
+      },
+      "sourceSize": {
+        "w": 177,
+        "h": 148.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "spider_10.png": {
+      "frame": {
+        "x": 1,
+        "y": 151.25,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "sourceSize": {
+        "w": 162.5,
+        "h": 140.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "spider_11.png": {
+      "frame": {
+        "x": 1,
+        "y": 294,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "sourceSize": {
+        "w": 162.5,
+        "h": 140.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "spider_12.png": {
+      "frame": {
+        "x": 165.5,
+        "y": 151.25,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "sourceSize": {
+        "w": 162.5,
+        "h": 140.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "spider_9.png": {
+      "frame": {
+        "x": 330,
+        "y": 151.25,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 162.5,
+        "h": 140.75
+      },
+      "sourceSize": {
+        "w": 162.5,
+        "h": 140.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "spider-1.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

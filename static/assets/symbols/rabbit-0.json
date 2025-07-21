@@ -1,0 +1,183 @@
+{
+  "frames": {
+    "rabbit_10.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 182.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_11.png": {
+      "frame": {
+        "x": 185.5,
+        "y": 1,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 182.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_12.png": {
+      "frame": {
+        "x": 1,
+        "y": 163.5,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 182.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_13.png": {
+      "frame": {
+        "x": 1,
+        "y": 348,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 182.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_9.png": {
+      "frame": {
+        "x": 163.5,
+        "y": 163.5,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 182.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 182.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_1.png": {
+      "frame": {
+        "x": 185.5,
+        "y": 348,
+        "w": 181.5,
+        "h": 160.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 181.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 181.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rabbit_2.png": {
+      "frame": {
+        "x": 326,
+        "y": 163.5,
+        "w": 181.5,
+        "h": 160.5
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 181.5,
+        "h": 160.5
+      },
+      "sourceSize": {
+        "w": 181.5,
+        "h": 160.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "rabbit-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

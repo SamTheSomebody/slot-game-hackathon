@@ -1,0 +1,10 @@
+//This is sample data generated following the values form symbols.ts and paytable.ts, not sure how accurate it is.
+export const REELS: number[][] = [
+	[0, 4, 2, 6, 3, 1, 0, 7, 4, 0, 2, 8, 1, 5, 2, 0, 0, 3, 6, 9, 2, 1, 0, 4, 10, 2, 0, 1, 3, 0],
+	[1, 4, 6, 0, 2, 0, 1, 5, 3, 0, 7, 2, 0, 8, 1, 2, 0, 1, 4, 10, 0, 3, 2, 1, 6, 0, 9, 0, 2, 1],
+	[2, 3, 1, 6, 0, 4, 0, 1, 8, 0, 5, 2, 1, 0, 3, 0, 2, 7, 0, 0, 9, 0, 1, 2, 4, 0, 10, 1, 6, 3],
+	[0, 2, 4, 0, 1, 5, 0, 3, 1, 2, 6, 0, 2, 1, 8, 0, 3, 1, 0, 10, 7, 0, 1, 4, 9, 0, 0, 2, 3, 1],
+	[1, 0, 5, 2, 0, 4, 1, 0, 6, 3, 2, 0, 1, 7, 0, 2, 4, 1, 3, 2, 0, 1, 0, 9, 0, 2, 10, 0, 6, 1]
+]; //0             5             10             15             20             25           29
+
+// So far there's a bug that we're about 4 indexs in front of what is being shown

@@ -1,0 +1,111 @@
+{
+  "frames": {
+    "pig_2.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_3.png": {
+      "frame": {
+        "x": 2,
+        "y": 161.75,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_4.png": {
+      "frame": {
+        "x": 2,
+        "y": 321.5,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_9.png": {
+      "frame": {
+        "x": 151.75,
+        "y": 2,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "pig-1.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

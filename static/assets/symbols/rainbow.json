@@ -1,0 +1,135 @@
+{
+  "frames": {
+    "rainbow_2.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 179.5,
+        "h": 153.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.5,
+        "h": 153.5
+      },
+      "sourceSize": {
+        "w": 179.5,
+        "h": 153.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rainbow_3.png": {
+      "frame": {
+        "x": 182.5,
+        "y": 1,
+        "w": 179.5,
+        "h": 153.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.5,
+        "h": 153.5
+      },
+      "sourceSize": {
+        "w": 179.5,
+        "h": 153.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rainbow_1.png": {
+      "frame": {
+        "x": 1,
+        "y": 156.5,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 145.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rainbow_4.png": {
+      "frame": {
+        "x": 1,
+        "y": 303.75,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 145.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "rainbow_5.png": {
+      "frame": {
+        "x": 180.25,
+        "y": 156.5,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 145.25
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 145.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "rainbow.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

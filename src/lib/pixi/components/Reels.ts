@@ -1,13 +1,15 @@
 import { Container, Graphics } from 'pixi.js';
 import { Reel } from './Reel';
 import { DISPLAY } from '$lib/config/display';
-import { SLOT_BUFFER, SLOT_SIZE } from '$lib/config/slot';
-import { spinCompleted, spinRequested } from '$lib/stores/gameState';
+import { SHOWN_SLOTS, SLOT_BUFFER, SLOT_SIZE } from '$lib/config/slot';
+import { spinCompleted, spinInitiated } from '$lib/stores/gameState';
+import { SymbolSpriteSheets } from './SymbolSpriteSheets';
 
 export class Reels {
 	spinningReels: number = 0;
 	container: Container;
 	reels: Reel[] = [];
+	private animationIntervalId?: number;
 
 	constructor() {
 		this.container = new Container({
@@ -15,23 +17,25 @@ export class Reels {
 			y: (DISPLAY.height - (SLOT_SIZE + SLOT_BUFFER) * 3) / 2
 		});
 
-		spinRequested.subscribe((requested) => {
-			if (requested) {
+		spinInitiated.subscribe((initiated) => {
+			if (initiated) {
 				this.spin();
-				spinRequested.update(() => false);
 			}
 		});
 	}
 
 	async load(reelsData: number[][]) {
+		const sheets = new SymbolSpriteSheets();
+		await sheets.load();
 		for (let i = 0; i < reelsData.length; i++) {
 			const reel = new Reel(reelsData[i], i);
-			await reel.load(reelsData[i]);
+			await reel.load(reelsData[i], sheets);
 			reel.container.x = i * (SLOT_SIZE + SLOT_BUFFER);
 			this.reels.push(reel);
 			this.container.addChild(reel.container);
 		}
 		this.applyMask();
+		this.startRandomAnimations();
 	}
 
 	private applyMask() {
@@ -43,18 +47,31 @@ export class Reels {
 	}
 
 	spin() {
-		if (this.spinningReels > 0) {
-			return;
-		}
-		spinCompleted.update(() => false);
 		this.spinningReels = 5;
-		this.reels.forEach((reel) =>
-			reel.spin(() => {
-				this.spinningReels--;
-				if (this.spinningReels <= 0) {
-					spinCompleted.update(() => true);
-				}
-			})
-		);
+		this.reels.forEach((reel) => reel.spin());
+	}
+
+	startRandomAnimations(intervalMs = 1000) {
+		if (this.animationIntervalId) {
+			clearInterval(this.animationIntervalId);
+		}
+		this.animationIntervalId = window.setInterval(() => {
+			this.animateRandomSymbol();
+		}, intervalMs);
+	}
+
+	stopRandomAnimations() {
+		if (this.animationIntervalId) {
+			clearInterval(this.animationIntervalId);
+			this.animationIntervalId = undefined;
+		}
+	}
+
+	animateRandomSymbol() {
+		const reelIndex = Math.floor(Math.random() * this.reels.length);
+		const reel = this.reels[reelIndex];
+		const visualIndex = Math.floor(Math.random() * SHOWN_SLOTS);
+
+		reel.animateSymbol(visualIndex);
 	}
 }

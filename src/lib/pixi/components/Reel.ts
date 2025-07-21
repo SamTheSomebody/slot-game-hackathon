@@ -1,13 +1,19 @@
 import { Color, Container, FillGradient, Graphics, Text, Ticker } from 'pixi.js';
 import { Slot } from './Slot';
-import { SLOT_SIZE, SLOT_BUFFER, SLOT_SPIN_TIME } from '$lib/config/slot';
-import { DebugContainer } from '../debug/container';
-import { easeInOutBack, easeInOutQuad, easeOutBack } from '$lib/utility/ease';
+import {
+	SLOT_SIZE,
+	SLOT_BUFFER,
+	SLOT_SPIN_TIME,
+	SHOWN_SLOTS,
+	SLOT_SPIN_MULTIPLIER
+} from '$lib/config/slot';
+import { easeOutBack } from '$lib/utility/ease';
 import { lerp } from '$lib/utility/lerp';
 import { DEBUG_MODE } from '$lib/config/debug';
 import { DEBUG_TEXT_STYLE } from '../debug/text';
+import type { SymbolSpriteSheets } from './SymbolSpriteSheets';
+import { reelPositions, reelsSpinning } from '$lib/stores/gameState';
 
-const SHOWN_SLOTS = 4;
 const STEP_HEIGHT = SLOT_SIZE + SLOT_BUFFER;
 
 export class Reel {
@@ -18,7 +24,7 @@ export class Reel {
 	private slotIDs: number[] = [];
 	private ticker?: Ticker;
 	private elapsed = 0;
-	private text: Text;
+	private text: Text | undefined;
 
 	constructor(slotIDs: number[], reelIndex: number) {
 		this.container = new Container();
@@ -39,35 +45,39 @@ export class Reel {
 		this.container.addChild(background);
 		this.slotIDs = slotIDs;
 		this.reelIndex = reelIndex;
-		this.text = new Text({
-			style: DEBUG_TEXT_STYLE
-		});
-		this.text.position.set(-15, 200);
-		this.container.addChild(this.text);
-		if (DEBUG_MODE) {
-			this.text.text = this.index.toString();
-		}
+		this.debugText();
 	}
 
-	async load(slotIDs: number[]) {
+	async load(slotIDs: number[], sheets: SymbolSpriteSheets) {
 		this.slots = [];
 		for (let i = 0; i < SHOWN_SLOTS; i++) {
-			const slot = new Slot(i);
+			const slot = new Slot(i, sheets);
 			const spriteID = slotIDs[i % slotIDs.length];
-			await slot.load(spriteID);
+			await slot.updateID(spriteID);
 			this.slots.push(slot);
 			slot.container.y = i * STEP_HEIGHT;
 			this.container.addChild(slot.container);
 		}
 	}
 
-	spin(onStop?: () => void) {
+	spin() {
+		reelsSpinning.update((amount) => amount + 1);
 		this.elapsed = 0;
-		const rand = Math.round(10 + Math.random() * 5);
+		const rand = 1; //Math.round(10 + Math.random() * 5 * this.reelIndex);
 		const start = this.index;
-		const end = start + rand + this.reelIndex * 5;
-		const time = this.reelIndex * 25 + SLOT_SPIN_TIME;
+		const end = this.index - rand;
+		const target = end % this.slotIDs.length;
+		const time = this.reelIndex * SLOT_SPIN_MULTIPLIER + SLOT_SPIN_TIME;
 		let last = start;
+
+		//We know what the position will be when we start
+		//Pass it early to avoid race-conditions / allow for skipping animations
+		reelPositions.update((positions) => {
+			const updated = [...positions];
+			updated[this.reelIndex] = target;
+			console.log(`Reel ${this.reelIndex} will land on ${target}`);
+			return updated;
+		});
 
 		this.ticker = new Ticker();
 		this.ticker.add((ticker: Ticker) => {
@@ -79,26 +89,29 @@ export class Reel {
 				current = end;
 				this.ticker?.stop();
 				this.ticker?.destroy();
-				if (onStop) {
-					onStop();
-				}
+				reelsSpinning.update((amount) => amount - 1);
 			}
+			//We still run this on the finished iteration
 			this.updateSlotPositions(current % this.slotIDs.length);
-			while (current > last + 0.9) {
-				last++;
+			while (last - 0.9 > current) {
+				last--;
 				this.updateIndex();
 			}
 		});
 		this.ticker.start();
 	}
 
+	animateSymbol(visualIndex: number) {
+		this.slots[visualIndex].animate();
+	}
+
 	private updateSlotPositions(currentDistance: number) {
 		const height = 4 * STEP_HEIGHT;
-		for (let i = 0; i < this.slots.length; i++) {
+		for (let i = 0; i < SHOWN_SLOTS; i++) {
 			const slot = this.slots[i];
 			if (!slot || !slot.container) {
 				console.warn(`Slot ${i} or its container is null`, slot);
-				continue; // Skip this slot
+				continue;
 			}
 			const offset = i * STEP_HEIGHT;
 			const pos = offset + currentDistance * STEP_HEIGHT;
@@ -107,11 +120,8 @@ export class Reel {
 	}
 
 	private updateIndex() {
-		this.index++;
+		this.index += this.slotIDs.length - 1;
 		this.index %= this.slotIDs.length;
-		if (DEBUG_MODE) {
-			this.text.text = this.index.toString();
-		}
 		let topSlot = this.slots[0];
 		for (let i = 1; i < this.slots.length; i++) {
 			if (this.slots[i].container.y > topSlot.container.y) {
@@ -119,6 +129,23 @@ export class Reel {
 			}
 		}
 		const nextSymbolIndex = (this.index + SHOWN_SLOTS) % this.slotIDs.length;
-		topSlot.load(this.slotIDs[nextSymbolIndex]);
+		topSlot.updateID(this.slotIDs[nextSymbolIndex]);
+		this.debugText();
+	}
+
+	private debugText() {
+		console.log('Drawing debug text');
+		if (DEBUG_MODE) {
+			if (!this.text) {
+				this.text = new Text({
+					text: ((this.index + 1) % this.slotIDs.length).toString(),
+					style: DEBUG_TEXT_STYLE,
+					y: 300
+				});
+				this.container.addChild(this.text);
+			} else {
+				this.text.text = ((this.index + 1) % this.slotIDs.length).toString();
+			}
+		}
 	}
 }

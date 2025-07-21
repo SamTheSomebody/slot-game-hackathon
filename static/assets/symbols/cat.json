@@ -1,0 +1,231 @@
+{
+  "frames": {
+    "cat_1.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 185.5,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 185.5,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 185.5,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_2.png": {
+      "frame": {
+        "x": 191.5,
+        "y": 2,
+        "w": 185.5,
+        "h": 140
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 185.5,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 185.5,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_3.png": {
+      "frame": {
+        "x": 2,
+        "y": 146,
+        "w": 185.5,
+        "h": 140
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 185.5,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 185.5,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_4.png": {
+      "frame": {
+        "x": 146,
+        "y": 191.5,
+        "w": 185.5,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 185.5,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 185.5,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_5.png": {
+      "frame": {
+        "x": 335.5,
+        "y": 2,
+        "w": 179.25,
+        "h": 140
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.25,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 179.25,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_6.png": {
+      "frame": {
+        "x": 335.5,
+        "y": 185.25,
+        "w": 179.25,
+        "h": 140
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.25,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 179.25,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_7.png": {
+      "frame": {
+        "x": 2,
+        "y": 335.5,
+        "w": 179.25,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.25,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 179.25,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_9.png": {
+      "frame": {
+        "x": 185.25,
+        "y": 335.5,
+        "w": 168.25,
+        "h": 140
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3.75,
+        "y": 0,
+        "w": 168.25,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 172,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "cat_8.png": {
+      "frame": {
+        "x": 329.25,
+        "y": 368.5,
+        "w": 179.25,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 179.25,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 179.25,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "cat.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

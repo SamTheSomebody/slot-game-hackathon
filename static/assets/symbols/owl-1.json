@@ -1,0 +1,183 @@
+{
+  "frames": {
+    "owl_2.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_3.png": {
+      "frame": {
+        "x": 183.25,
+        "y": 2,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_4.png": {
+      "frame": {
+        "x": 2,
+        "y": 155.5,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 177.25,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 177.25,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_5.png": {
+      "frame": {
+        "x": 2,
+        "y": 309,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 164.5,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_6.png": {
+      "frame": {
+        "x": 170.5,
+        "y": 309,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 164.5,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_7.png": {
+      "frame": {
+        "x": 183.25,
+        "y": 155.5,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 164.5,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "owl_8.png": {
+      "frame": {
+        "x": 339,
+        "y": 309,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 164.5,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 164.5,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "owl-1.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

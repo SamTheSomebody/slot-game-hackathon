@@ -1,0 +1,159 @@
+{
+  "frames": {
+    "octopus_7.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 191,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 191,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 191,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_8.png": {
+      "frame": {
+        "x": 197,
+        "y": 2,
+        "w": 191,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 191,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 191,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_9.png": {
+      "frame": {
+        "x": 2,
+        "y": 155.5,
+        "w": 191,
+        "h": 149.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 191,
+        "h": 149.5
+      },
+      "sourceSize": {
+        "w": 191,
+        "h": 149.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_1.png": {
+      "frame": {
+        "x": 2,
+        "y": 309,
+        "w": 175.5,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175.5,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 175.5,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_2.png": {
+      "frame": {
+        "x": 181.5,
+        "y": 309,
+        "w": 175.5,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175.5,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 175.5,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_3.png": {
+      "frame": {
+        "x": 197,
+        "y": 155.5,
+        "w": 175.5,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 175.5,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 175.5,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "octopus-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

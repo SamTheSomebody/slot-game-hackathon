@@ -8,6 +8,10 @@ export const betState = writable({
 	currentBet: 1.25
 });
 
+export const balanceState = writable({
+	currentBalance: 100
+});
+
 export function IncreaseBet() {
 	betState.update((state) => ({
 		...state,

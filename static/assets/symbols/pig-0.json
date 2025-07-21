@@ -1,0 +1,231 @@
+{
+  "frames": {
+    "pig_5.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 165.5,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_6.png": {
+      "frame": {
+        "x": 171.5,
+        "y": 2,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 165.5,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_7.png": {
+      "frame": {
+        "x": 341,
+        "y": 2,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 165.5,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_8.png": {
+      "frame": {
+        "x": 2,
+        "y": 161.75,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 165.5,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 165.5,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_1.png": {
+      "frame": {
+        "x": 2,
+        "y": 321.5,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_10.png": {
+      "frame": {
+        "x": 151.75,
+        "y": 321.5,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_11.png": {
+      "frame": {
+        "x": 171.5,
+        "y": 161.75,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_12.png": {
+      "frame": {
+        "x": 301.5,
+        "y": 321.5,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "pig_13.png": {
+      "frame": {
+        "x": 321.25,
+        "y": 161.75,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 145.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 145.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "pig-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

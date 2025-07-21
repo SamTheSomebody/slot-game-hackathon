@@ -1,0 +1,111 @@
+{
+  "frames": {
+    "sheep_12.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 190.75,
+        "h": 169.25
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 190.75,
+        "h": 169.25
+      },
+      "sourceSize": {
+        "w": 190.75,
+        "h": 169.25
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "sheep_10.png": {
+      "frame": {
+        "x": 193.75,
+        "y": 1,
+        "w": 190.75,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 190.75,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 190.75,
+        "h": 169
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "sheep_9.png": {
+      "frame": {
+        "x": 193.75,
+        "y": 172,
+        "w": 190.75,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 190.75,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 190.75,
+        "h": 169
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "sheep_11.png": {
+      "frame": {
+        "x": 1,
+        "y": 172.25,
+        "w": 190.75,
+        "h": 168.5
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 190.75,
+        "h": 168.5
+      },
+      "sourceSize": {
+        "w": 190.75,
+        "h": 168.5
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "sheep-0.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

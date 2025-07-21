@@ -4,6 +4,8 @@ import { Color, Container, FillGradient, Graphics } from 'pixi.js';
 import { SpinPanel } from '../ui/SpinPanel';
 import { MenuButton } from '../ui/MenuButton';
 import { BetPanel } from './BetPanel';
+import { menuRequested } from '$lib/stores/gameState';
+import { BalancePanel } from './BalancePanel';
 
 export class ControlPanel {
 	container: Container;
@@ -17,9 +19,27 @@ export class ControlPanel {
 
 	async load() {
 		this.createBackground();
-		await this.addMenuButton();
-		await this.addSpinPanel();
-		await this.addBetPanel();
+
+		const menuButton = new MenuButton(() => {
+			menuRequested.set(true);
+		});
+		await menuButton.load();
+
+		const spinPanel = new SpinPanel();
+		await spinPanel.load();
+
+		const betPanel = new BetPanel();
+		await betPanel.load();
+
+		const balancePanel = new BalancePanel();
+		await balancePanel.load();
+
+		this.container.addChild(
+			menuButton.container,
+			spinPanel.container,
+			betPanel.container,
+			balancePanel.container
+		);
 	}
 
 	private createBackground() {
@@ -41,23 +61,5 @@ export class ControlPanel {
 				width: 2
 			});
 		this.container.addChild(graphic);
-	}
-
-	private async addMenuButton() {
-		const menuButton = new MenuButton(() => {}); //TODO open menu
-		await menuButton.load();
-		this.container.addChild(menuButton.container);
-	}
-
-	private async addSpinPanel() {
-		const spinPanel = new SpinPanel();
-		await spinPanel.load();
-		this.container.addChild(spinPanel.container);
-	}
-
-	private async addBetPanel() {
-		const panel = new BetPanel();
-		await panel.load();
-		this.container.addChild(panel.container);
 	}
 }

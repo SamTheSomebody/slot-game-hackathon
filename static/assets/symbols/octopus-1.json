@@ -1,0 +1,87 @@
+{
+  "frames": {
+    "octopus_4.png": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 170,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_5.png": {
+      "frame": {
+        "x": 176,
+        "y": 2,
+        "w": 170,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "octopus_6.png": {
+      "frame": {
+        "x": 2,
+        "y": 149,
+        "w": 170,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "octopus-1.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}

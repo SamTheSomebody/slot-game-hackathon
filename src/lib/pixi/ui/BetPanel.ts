@@ -12,7 +12,7 @@ import { DecreaseBet, betState, IncreaseBet } from '$lib/stores/betState';
 
 export class BetPanel {
 	container: Container;
-	betAmountText: Text;
+	amountText: Text;
 	unsubscribe: () => void;
 	private width: number;
 
@@ -22,7 +22,7 @@ export class BetPanel {
 		const x = DISPLAY.width * 0.55 - this.width + PANEL_ROUNDING;
 		this.container.position.set(x, 0);
 
-		this.betAmountText = new Text({
+		this.amountText = new Text({
 			style: {
 				fontSize: 24,
 				fill: 0xffffff,
@@ -31,7 +31,7 @@ export class BetPanel {
 		});
 
 		this.unsubscribe = betState.subscribe((state) => {
-			this.betAmountText.text = `$${state.currentBet.toFixed(2)}`;
+			this.amountText.text = `$${state.currentBet.toFixed(2)}`;
 		});
 	}
 
@@ -53,12 +53,14 @@ export class BetPanel {
 			}
 		});
 		betText.position.set(x, 12);
-		this.betAmountText.position.set(x, 32);
+		this.amountText.position.set(x, 32);
 
 		const diameter = BUTTON_WIDTH / 8;
+
 		const increaseButton = new CircleButton(() => IncreaseBet(), diameter);
 		await increaseButton.load(ADD_ICON_URL);
 		increaseButton.container.position.set(this.width - diameter - x, 7 + diameter);
+
 		const decreaseButton = new CircleButton(() => DecreaseBet(), diameter);
 		await decreaseButton.load(REMOVE_ICON_URL);
 		decreaseButton.container.position.set(this.width - diameter - x, (13 + diameter) * 2);
@@ -68,7 +70,7 @@ export class BetPanel {
 			leftBorder,
 			rightBorder,
 			betText,
-			this.betAmountText,
+			this.amountText,
 			decreaseButton.container,
 			increaseButton.container
 		);

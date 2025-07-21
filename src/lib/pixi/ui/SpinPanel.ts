@@ -29,14 +29,14 @@ export class SpinPanel {
 		this.container.addChild(graphic);
 
 		const buttons = [
-			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: AUTO_ICON_URL },
+			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: AUTO_ICON_URL }, //TODO autospin
 			{
-				onclick: () => spinRequested.update(() => true),
+				onclick: () => spinRequested.set(true),
 				diameter: BUTTON_WIDTH / 2,
 				icon: SPIN_ICON_URL,
 				invertColour: true
 			},
-			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: BOLT_ICON_URL }
+			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: BOLT_ICON_URL } //TODO fast spin
 		];
 
 		let xPosition = 20;

@@ -3,6 +3,11 @@ import { DISPLAY } from '$lib/config/display';
 import { Reels } from './Reels';
 import { ControlPanel } from '../ui/ControlPanel';
 import { Environment } from './Environment';
+import { SpinControl } from './SpinControl';
+import { reelPositions } from '$lib/stores/gameState';
+import { REELS } from '$lib/config/reels';
+import { ImageLoader } from './ImageLoader';
+import { FOREGROUND_IMAGES } from '$lib/config/environment/foreground';
 
 export class App {
 	app: Application;
@@ -27,22 +32,27 @@ export class App {
 		await environment.load();
 
 		const reels = new Reels();
-		await reels.load(this.generateRandomReels());
+		await reels.load(REELS); //TODO toggle for generate random
 		reels.container.zIndex = 1;
+		reelPositions.set([0, 0, 0, 0, 0]);
+
+		const foreground = new ImageLoader();
+		await foreground.load(FOREGROUND_IMAGES);
+		foreground.container.zIndex = 90;
 
 		const controlPanel = new ControlPanel();
 		await controlPanel.load();
 		controlPanel.container.zIndex = 99;
 
-		this.stage.addChild(environment.container, reels.container, controlPanel.container);
-	}
+		const spinControl = new SpinControl();
+		await spinControl.load();
 
-	private generateRandomReels(count = 5): number[][] {
-		return Array.from({ length: count }, () => this.generateRandomSlots());
-	}
-
-	private generateRandomSlots(count = 30, max = 11): number[] {
-		return Array.from({ length: count }, () => Math.floor(Math.random() * max));
+		this.stage.addChild(
+			environment.container,
+			reels.container,
+			foreground.container,
+			controlPanel.container
+		);
 	}
 
 	destroy() {

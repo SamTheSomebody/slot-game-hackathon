@@ -1,0 +1,159 @@
+{
+  "frames": {
+    "unicorn_1.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 176.5,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 176.5,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 176.5,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "unicorn_2.png": {
+      "frame": {
+        "x": 179.5,
+        "y": 1,
+        "w": 176.5,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 176.5,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 176.5,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "unicorn_3.png": {
+      "frame": {
+        "x": 1,
+        "y": 159,
+        "w": 176.5,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 176.5,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 176.5,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "unicorn_10.png": {
+      "frame": {
+        "x": 1,
+        "y": 317,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 161.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "unicorn_11.png": {
+      "frame": {
+        "x": 164.75,
+        "y": 317,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 161.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "unicorn_9.png": {
+      "frame": {
+        "x": 179.5,
+        "y": 159,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 161.75,
+        "h": 155.75
+      },
+      "sourceSize": {
+        "w": 161.75,
+        "h": 155.75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "unicorn-1.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 512,
+      "h": 512
+    },
+    "scale": 0.25
+  }
+}
