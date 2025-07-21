@@ -1,4 +1,4 @@
-import { CONTROL_PANEL_HEIGHT, MENU_ICON_URL, PANEL_ROUNDING } from '$lib/config/ui/ui';
+import { CONTROL_PANEL_HEIGHT, MENU_ICON_URL, PANEL_ROUNDING } from '$lib/config/ui';
 import { Assets, Container, Graphics, Sprite } from 'pixi.js';
 
 export class MenuButton {

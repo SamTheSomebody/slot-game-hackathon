@@ -1,6 +1,6 @@
 import { DISPLAY } from '$lib/config/display';
 import { Container, Graphics, Text } from 'pixi.js';
-import { CONTROL_PANEL_HEIGHT } from '$lib/config/ui/ui';
+import { CONTROL_PANEL_HEIGHT } from '$lib/config/ui';
 import { balanceState } from '$lib/stores/betState';
 
 export class BalancePanel {

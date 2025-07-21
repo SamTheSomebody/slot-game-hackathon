@@ -9,7 +9,8 @@ export async function loadSpriteSheets(name: string, path: string): Promise<Spri
 		sheets.push(sheet);
 	} catch (err) {
 		console.log(
-			"Couldn't find a singluar sprite sheet for: " + err + '\nAttempting to find multiple...'
+			'There may be multiple sprite sheets! Attempting to find files with numbered extension.\n' +
+				err
 		);
 		let i = 0;
 		while (true) {
@@ -19,7 +20,12 @@ export async function loadSpriteSheets(name: string, path: string): Promise<Spri
 				sheets.push(s);
 				i++;
 			} catch (err) {
-				console.log("Couldn't find anymore sprite sheets for: " + err);
+				if (i === 0) {
+					console.error(
+						'No spritesheets found! You might have an incorrect path or file name. \n' + err
+					);
+				}
+				console.log(`Found ${i} spritesheets for ${name}.\n${err}`);
 				break;
 			}
 		}

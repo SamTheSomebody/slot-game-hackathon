@@ -33,6 +33,7 @@
 	},
 	"dependencies": {
 		"gsap": "^3.13.0",
+		"pixi-filters": "^6.1.4",
 		"pixi.js": "^8.11.0"
 	}
 }

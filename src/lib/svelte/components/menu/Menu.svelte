@@ -3,7 +3,7 @@
 	import { PAYLINES } from '$lib/config/paylines';
 	import PaytableSymbol from './PaytableSymbol.svelte';
 	import Payline from './Payline.svelte';
-	import { SYMBOLS, type Symbol, type SymbolRarity } from '$lib/config/symbols';
+	import { RARITY_VALUES, SYMBOLS, type Symbol, type SymbolRarity } from '$lib/config/symbols';
 
 	const symbolsByRarity: Record<SymbolRarity, { symbol: Symbol; id: number }[]> = {
 		common: [],
@@ -21,10 +21,15 @@
 	<h2>Payout Table</h2>
 
 	<div class="paytable-grid">
-		{#each PAYTABLE as table (table.rarity)}
-			<div class="rarity-title">{table.name}</div>
+		{#each Object.values(PAYTABLE) as table (table.name)}
+			<div
+				class="rarity-title"
+				style="color: #{RARITY_VALUES[table.name].color.toString(16).padStart(6, '0')}"
+			>
+				{table.name}
+			</div>
 			<div class="symbols-wrapper">
-				{#each symbolsByRarity[table.rarity] as symbol (symbol.id)}
+				{#each symbolsByRarity[table.name] as symbol (symbol.id)}
 					<PaytableSymbol symbolID={symbol.id} payouts={table.payouts} />
 				{/each}
 			</div>

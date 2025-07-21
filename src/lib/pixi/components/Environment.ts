@@ -1,31 +1,31 @@
-import { BACKGROUND_IMAGES } from '$lib/config/environment/background';
+import { BACKGROUND_IMAGES, CLOUD_URL, LEAF_URL, TREE_IMAGES } from '$lib/config/environment';
 import { Assets, Container, Sprite } from 'pixi.js';
-import { ImageLoader } from './ImageLoader';
-import { spinInitiated } from '$lib/stores/gameState';
+import { loadImages } from '$lib/utility/loadImages';
+import { setFastMode, spinInitiated } from '$lib/stores/gameState';
 import gsap from 'gsap';
-import { FOREGROUND_IMAGES } from '$lib/config/environment/foreground';
-import { CLOUD_URL, LEAF_URL } from '$lib/config/environment/misc';
 import { DISPLAY } from '$lib/config/display';
-import { TREE_IMAGES } from '$lib/config/environment/trees';
 import { Particles } from './Particles';
 
 export class Environment {
 	container: Container;
 	private background!: Container;
-	private foreground!: Container;
 	private trees!: Container;
-	private leafParticlesLeft!: Particles;
-	private leafParticlesRight!: Particles;
+	private leafParticles: Particles[] = [];
+	private isFastMode = false;
 
 	constructor() {
 		this.container = new Container();
 		this.container.sortableChildren = true;
 
-		spinInitiated.subscribe((requested) => {
-			if (requested) {
+		spinInitiated.subscribe((is) => {
+			if (is) {
 				this.bounceBackground();
 				this.shakeTrees();
 			}
+		});
+
+		setFastMode.subscribe((active) => {
+			this.isFastMode = active;
 		});
 	}
 
@@ -51,40 +51,35 @@ export class Environment {
 			);
 		}
 
-		const background = new ImageLoader();
-		await background.load(BACKGROUND_IMAGES);
-		this.background = background.container;
+		const background = await loadImages(BACKGROUND_IMAGES);
+		this.background = background;
 		this.background.zIndex = 0;
 
-		const trees = new ImageLoader();
-		await trees.load(TREE_IMAGES);
-		this.trees = trees.container;
+		const trees = await loadImages(TREE_IMAGES);
+		this.trees = trees;
 		this.trees.zIndex = 10;
 
 		const leafTexture = await Assets.load(LEAF_URL);
-		this.leafParticlesLeft = new Particles(leafTexture, 400, 300);
-		this.leafParticlesRight = new Particles(leafTexture, 400, 300);
-		this.leafParticlesLeft.preload(500);
-		this.leafParticlesRight.preload(500);
-		this.leafParticlesRight.container.x = DISPLAY.width - 400;
-		this.leafParticlesLeft.container.zIndex = 20;
-		this.leafParticlesRight.container.zIndex = 20;
-
-		const foreground = new ImageLoader();
-		await foreground.load(FOREGROUND_IMAGES);
-		this.foreground = foreground.container;
-		this.foreground.zIndex = 90;
+		for (let i = 0; i < 2; i++) {
+			const particles = new Particles(leafTexture, 400, 300);
+			particles.preload(500);
+			particles.container.zIndex = 20;
+			this.leafParticles.push(particles);
+		}
+		this.leafParticles[0].container.x = DISPLAY.width - 400;
 
 		this.container.addChild(
 			this.background,
 			this.trees,
-			this.leafParticlesLeft.container,
-			this.leafParticlesRight.container,
-			this.foreground
+			this.leafParticles[0].container,
+			this.leafParticles[1].container
 		);
 	}
 
 	bounceBackground() {
+		if (this.isFastMode) {
+			return;
+		}
 		this.background.children.forEach((child, index) => {
 			const originalY = child.y;
 			gsap.fromTo(
@@ -103,6 +98,12 @@ export class Environment {
 	}
 
 	shakeTrees() {
+		for (let i = 0; i < 2; i++) {
+			this.leafParticles[i].burst(500, 200, 0.5, 2, 2);
+		}
+		if (this.isFastMode) {
+			return;
+		}
 		this.trees.children.forEach((child, index) => {
 			const originalX = child.x;
 			const multiplier = index === 0 ? 1 : -1;
@@ -112,14 +113,12 @@ export class Environment {
 				{
 					x: originalX + 10 * multiplier,
 					rotation: 0.02 * -multiplier,
-					duration: 0.25,
+					duration: this.isFastMode ? 0 : 0.25,
 					ease: 'expo.out',
 					yoyo: true,
 					repeat: 1
 				}
 			);
 		});
-		this.leafParticlesRight.burst(500, 200, 0.5, 2, 2);
-		this.leafParticlesLeft.burst(500, 200, 0.5, 2, 2);
 	}
 }

@@ -7,7 +7,7 @@ import {
 	CONTROL_PANEL_HEIGHT,
 	PANEL_ROUNDING,
 	REMOVE_ICON_URL
-} from '$lib/config/ui/ui';
+} from '$lib/config/ui';
 import { DecreaseBet, betState, IncreaseBet } from '$lib/stores/betState';
 
 export class BetPanel {

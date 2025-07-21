@@ -19,7 +19,7 @@ export class Particles {
 
 	//Quick and dirty object pooling
 	//Need to look into this deeper but Particle has no destory method so might as well try to reuse them.
-	//Mostly likely more efficient either way, no time for profiling.
+	//98% sure it's more efficient but no time for profiling.
 	private newParticle(): Particle {
 		if (
 			this.container.children.length > 1 &&
@@ -55,11 +55,11 @@ export class Particles {
 		lifetime: number = 1
 	) {
 		for (let i = 0; i < quantity; i++) {
+			const rand = Math.random();
 			const particle = this.newParticle();
 			particle.scaleX = 0;
 			particle.scaleY = 0;
 			particle.alpha = 0;
-			const rand = Math.random();
 			particle.rotation = rand * 2 * Math.PI;
 			gsap.to(particle, {
 				scaleX: (1 + rand / 20) * scale,

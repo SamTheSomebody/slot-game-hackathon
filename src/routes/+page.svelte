@@ -24,7 +24,9 @@
 	{#if $menuRequested}
 		<btn
 			role="menu"
+			tabindex="0"
 			class="menu-overlay"
+			on:keydown={() => menuRequested.set(false)}
 			on:click={() => menuRequested.set(false)}
 			in:fade={{ duration: 250 }}
 			out:fade={{ duration: 200 }}

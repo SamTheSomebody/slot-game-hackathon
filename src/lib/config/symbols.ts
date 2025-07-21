@@ -19,3 +19,10 @@ export const SYMBOLS: Record<number, Symbol> = {
 };
 
 export const SYMBOLS_SPRITESHEET_URL = '/assets/symbols';
+
+export const RARITY_VALUES: Record<SymbolRarity, { color: number; intensity: number }> = {
+	common: { color: 0xffffff, intensity: 1 },
+	uncommon: { color: 0x00ffff, intensity: 1.25 },
+	rare: { color: 0xffff00, intensity: 1.5 },
+	bonus: { color: 0xff00ff, intensity: 1.75 }
+};

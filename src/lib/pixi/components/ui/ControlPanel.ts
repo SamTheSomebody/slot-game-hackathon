@@ -1,5 +1,5 @@
 import { DISPLAY } from '$lib/config/display';
-import { CONTROL_PANEL_BOTTOM_PAD, CONTROL_PANEL_HEIGHT, PANEL_ROUNDING } from '$lib/config/ui/ui';
+import { CONTROL_PANEL_BOTTOM_PAD, CONTROL_PANEL_HEIGHT, PANEL_ROUNDING } from '$lib/config/ui';
 import { Color, Container, FillGradient, Graphics } from 'pixi.js';
 import { SpinPanel } from '../ui/SpinPanel';
 import { MenuButton } from '../ui/MenuButton';

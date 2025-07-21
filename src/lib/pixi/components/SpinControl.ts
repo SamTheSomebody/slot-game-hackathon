@@ -1,12 +1,15 @@
+import { PAYLINES } from '$lib/config/paylines';
 import { REELS } from '$lib/config/reels';
-import { evaluatePaylines } from '$lib/logic/paylineEvaluator';
+import { evaluatePaylines, type CompletedMatch } from '$lib/logic/paylineEvaluator';
 import { balanceState, betState } from '$lib/stores/betState';
 import {
 	reelPositions,
 	reelsSpinning,
 	spinCompleted,
 	spinInitiated,
-	spinRequested
+	spinRequested,
+	updatePayout,
+	type Payout
 } from '$lib/stores/gameState';
 
 export class SpinControl {
@@ -29,15 +32,28 @@ export class SpinControl {
 	async load() {}
 
 	private completeSpin(reelsSpinning: number) {
-		console.log(`There are ${reelsSpinning} reels spinning.`);
-		if (reelsSpinning <= 0) {
-			console.log(`Reels finished spinning.`);
-			spinCompleted.set(true);
-			spinInitiated.set(false);
-			this.canSpin = true;
+		if (reelsSpinning > 0) {
+			return;
 		}
-
-		evaluatePaylines(this.reelPositions, REELS);
+		spinCompleted.set(true);
+		spinInitiated.set(false);
+		this.canSpin = true;
+		if (this.reelPositions.length > 4) {
+			const betPerPayline = this.currentBet / PAYLINES.length;
+			const matches: CompletedMatch[] = evaluatePaylines(this.reelPositions, REELS);
+			for (const match of matches) {
+				for (let i = 0; i < match.payline.length; i++) {
+					const payout: Payout = {
+						reelIndex: match.startIndex + i,
+						slotIndex: match.payline[i],
+						rarity: match.rarity
+					};
+					updatePayout.set(payout);
+					this.currentBalance += match.payout * betPerPayline;
+				}
+			}
+			balanceState.set({ currentBalance: this.currentBalance });
+		}
 	}
 
 	private startSpin(isRequested: boolean) {

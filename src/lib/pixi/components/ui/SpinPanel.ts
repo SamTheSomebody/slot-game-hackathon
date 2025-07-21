@@ -1,4 +1,3 @@
-import { DISPLAY } from '$lib/config/display';
 import {
 	AUTO_ICON_URL,
 	BOLT_ICON_URL,
@@ -6,14 +5,17 @@ import {
 	CONTROL_PANEL_HEIGHT,
 	PANEL_ROUNDING,
 	SPIN_ICON_URL
-} from '$lib/config/ui/ui';
-import { Container, Graphics } from 'pixi.js';
+} from '$lib/config/ui';
+import { DISPLAY } from '$lib/config/display';
 import { CircleButton } from '../ui/CircleButton';
-import { spinRequested } from '$lib/stores/gameState';
+import { setFastMode, setNoSpinDelay, spinRequested } from '$lib/stores/gameState';
+import { Container, Graphics } from 'pixi.js';
 
 export class SpinPanel {
 	container: Container;
 	private width: number;
+	private isFastMode = false;
+	private isNoSpinDelay = false;
 
 	constructor() {
 		this.container = new Container();
@@ -29,24 +31,44 @@ export class SpinPanel {
 		this.container.addChild(graphic);
 
 		const buttons = [
-			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: AUTO_ICON_URL }, //TODO autospin
+			{ onclick: () => this.toggleNoSpinDelay(), diameter: BUTTON_WIDTH / 4, icon: AUTO_ICON_URL }, //TODO autospin
 			{
 				onclick: () => spinRequested.set(true),
 				diameter: BUTTON_WIDTH / 2,
 				icon: SPIN_ICON_URL,
 				invertColour: true
 			},
-			{ onclick: () => {}, diameter: BUTTON_WIDTH / 4, icon: BOLT_ICON_URL } //TODO fast spin
+			{ onclick: () => this.toggleFastMode(), diameter: BUTTON_WIDTH / 4, icon: BOLT_ICON_URL } //TODO fast spin
 		];
 
 		let xPosition = 20;
 		const buttonSpacing = 10;
+		const circleButtons: CircleButton[] = [];
 		for (const { onclick, diameter, icon, invertColour } of buttons) {
 			const button = new CircleButton(onclick, diameter, invertColour); //TODO spin reels;
 			await button.load(icon);
 			button.container.position.set(xPosition + diameter, CONTROL_PANEL_HEIGHT / 2);
 			this.container.addChild(button.container);
 			xPosition += diameter * 2 + buttonSpacing;
+			circleButtons.push(button);
 		}
+
+		setNoSpinDelay.subscribe((active) => {
+			circleButtons[0].toggleActivation(active);
+		});
+
+		setFastMode.subscribe((active) => {
+			circleButtons[2].toggleActivation(active);
+		});
+	}
+
+	private toggleNoSpinDelay() {
+		this.isNoSpinDelay = !this.isNoSpinDelay;
+		setNoSpinDelay.set(this.isNoSpinDelay);
+	}
+
+	private toggleFastMode() {
+		this.isFastMode = !this.isFastMode;
+		setFastMode.set(this.isFastMode);
 	}
 }

@@ -1,13 +1,13 @@
 import { Application, Container } from 'pixi.js';
 import { DISPLAY } from '$lib/config/display';
 import { Reels } from './Reels';
-import { ControlPanel } from '../ui/ControlPanel';
+import { ControlPanel } from './ui/ControlPanel';
 import { Environment } from './Environment';
 import { SpinControl } from './SpinControl';
 import { reelPositions } from '$lib/stores/gameState';
 import { REELS } from '$lib/config/reels';
-import { ImageLoader } from './ImageLoader';
-import { FOREGROUND_IMAGES } from '$lib/config/environment/foreground';
+import { FOREGROUND_IMAGES } from '$lib/config/environment';
+import { loadImages } from '$lib/utility/loadImages';
 
 export class App {
 	app: Application;
@@ -36,9 +36,8 @@ export class App {
 		reels.container.zIndex = 1;
 		reelPositions.set([0, 0, 0, 0, 0]);
 
-		const foreground = new ImageLoader();
-		await foreground.load(FOREGROUND_IMAGES);
-		foreground.container.zIndex = 90;
+		const foreground = await loadImages(FOREGROUND_IMAGES);
+		foreground.zIndex = 90;
 
 		const controlPanel = new ControlPanel();
 		await controlPanel.load();
@@ -47,12 +46,7 @@ export class App {
 		const spinControl = new SpinControl();
 		await spinControl.load();
 
-		this.stage.addChild(
-			environment.container,
-			reels.container,
-			foreground.container,
-			controlPanel.container
-		);
+		this.stage.addChild(environment.container, reels.container, foreground, controlPanel.container);
 	}
 
 	destroy() {

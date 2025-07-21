@@ -2,7 +2,7 @@ import { Container, Graphics } from 'pixi.js';
 import { Reel } from './Reel';
 import { DISPLAY } from '$lib/config/display';
 import { SHOWN_SLOTS, SLOT_BUFFER, SLOT_SIZE } from '$lib/config/slot';
-import { spinCompleted, spinInitiated } from '$lib/stores/gameState';
+import { spinInitiated } from '$lib/stores/gameState';
 import { SymbolSpriteSheets } from './SymbolSpriteSheets';
 
 export class Reels {
@@ -39,9 +39,9 @@ export class Reels {
 	}
 
 	private applyMask() {
-		const totalWidth = (SLOT_SIZE + SLOT_BUFFER) * 5;
+		const totalWidth = (SLOT_SIZE + SLOT_BUFFER) * 5 + SLOT_BUFFER * 2;
 		const totalHeight = (SLOT_SIZE + SLOT_BUFFER) * 3;
-		const mask = new Graphics().rect(0, 0, totalWidth, totalHeight).fill(0xffffff);
+		const mask = new Graphics().rect(-SLOT_BUFFER, 0, totalWidth, totalHeight).fill(0xffffff);
 		this.container.mask = mask;
 		this.container.addChild(mask);
 	}

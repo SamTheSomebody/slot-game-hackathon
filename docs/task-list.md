@@ -1,5 +1,4 @@
 ## Tasklist
-
 - [x] Project setup
     - [x] Svelte + SvelteKit
     - [x] PixiJS
@@ -7,39 +6,35 @@
     - [x] Background / Environmnet
     - [x] Merge-3 Monsters 
     - [x] UI
-- [ ] Scene set up
+- [x] Scene set up
     - [x] Background
     - [x] Foreground
     - [x] Trees
     - [x] Animate Clouds
-    - [ ] Leaf particles
-    - [ ] Reactive effects
+    - [x] Leaf particles
+    - [x] Reactive effects
         - [x] Shake mountains on spin click
-        - [ ] Shake trees
-- [ ] Set up reels
+        - [x] Shake trees
+- [x] Set up reels
     - [x] Generate random reels of 30
     - [x] Create fixed data (97% RTP)
     - [x] Basic Spin (only need to draw 4 at a time)
     - [x] Set up easing
     - [x] Clamp position
     - [x] Add left to right delay
-    - [ ] Bug fix my indexing 
-    - [ ] Make the randomization more natural
-- [ ] User Interface (Copy ui from twist)
+    - [x] Bug fix my indexing 
+- [x] User Interface (Copy ui from twist)
     - [x] Control Panel
     - [x] Spin Button
-    - [ ] Automatic Spin Toggle
+    - [x] Automatic Spin Toggle
     - [x] Bet size & buttons
     - [x] Balance
     - [x] Menu Button
     - [x] Menu
-        - [ ] Sound on/off
-        - [ ] Music on/off
         - [x] Info
             - [x] Paylines
             - [x] Paytable 
-    - [ ] Debug Controls
-- [ ] Paytable
+- [x] Paytable
     - [x] Figure out a rough range (I have 11 symbols - 150 slots in total)
         - [x] Common (3 symbols, 0.5x payout, 50% chance - 75)
         - [x] Uncommon (3 symbols, 2x payout, 30% chance - 45)
@@ -47,25 +42,31 @@
         - [x] Bonus (2 symbols, 40x payout, 5% chance - 7.5 (7))
 - [ ] Paylines
     - [x] Generate rough playlines
-    - [ ] Split bet across each one
+    - [x] Split bet across each one
     - [ ] Enable/Disable paylines
-- [ ] Logic
-    - [ ] Evaluate paylines
+- [x] Logic
+    - [x] Evaluate paylines
 - [ ] Debug tools
     - [ ] Force uncommon win
     - [ ] Force rare win
     - [ ] Force bonus round
-- [ ] Slot Animation
-    - [x] Gentle idle animation
-    - [ ] Add some movement
-    - [ ] Win animation
-- [ ] VFX
-    - [ ] Filters
-- [ ] Refactor
-    - [ ] SOLID
+- [x] Slot Animation
+    - [x] Idle animation
+    - [x] Win animation
+- [x] VFX
+    - [x] Filters
+    - [ ] Displacement map on grass
 ## Future
 - [ ] Utilize AssetPack (recommended by PixiJS)
 - [ ] Polish Paytable
     - [ ] Tease bonus symbols (show 2 but rarely 3)
     - [ ] Get to 97% RTP
+- [ ] Activate Bonus round
 - [ ] Switch out common symbols during a bonus round
+- [ ] Fix tree anchor points
+- [ ] SFX & Music
+- [ ] Sound on/off
+- [ ] Music on/off
+- [ ] Spine2D
+- [ ] Improve Spritesheet loader
+- [ ] Decrease/turn off environment animations for fast mode - can be pushed off screen

@@ -1,7 +1,7 @@
 import { SYMBOLS, SYMBOLS_SPRITESHEET_URL } from '$lib/config/symbols';
 import { Spritesheet, Texture } from 'pixi.js';
 import type { Symbol } from '$lib/config/symbols';
-import { loadSpriteSheets } from '../utility/loadSpriteSheets';
+import { loadSpriteSheets } from '$lib/utility/loadSpriteSheets';
 
 export class SymbolSpriteSheets {
 	private spriteLookup: Record<number, Spritesheet[]> = {};
@@ -24,7 +24,7 @@ export class SymbolSpriteSheets {
 				return sheet.textures[textureName];
 			}
 		}
-		console.log(`No texture found for ${symbolId}, ${spriteId}`);
+		//console.log(`No texture found for ${symbolId}, ${spriteId}`);
 		return undefined;
 	}
 }

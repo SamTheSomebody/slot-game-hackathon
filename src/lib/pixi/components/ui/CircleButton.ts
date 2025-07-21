@@ -1,4 +1,4 @@
-import { BUTTON_ICON_PADDING } from '$lib/config/ui/ui';
+import { BUTTON_ICON_PADDING } from '$lib/config/ui';
 import { Assets, Container, Graphics, Sprite } from 'pixi.js';
 
 export class CircleButton {
@@ -6,10 +6,13 @@ export class CircleButton {
 	innerContainer: Container;
 	private onClick: () => void;
 	private diameter: number;
+	private sprite!: Sprite;
+	private isInverted: boolean;
 
 	constructor(onClick: () => void, diameter: number, invertColour: boolean = false) {
 		this.onClick = onClick;
 		this.diameter = diameter;
+		this.isInverted = invertColour;
 		this.container = new Container();
 		this.innerContainer = new Container();
 
@@ -28,7 +31,6 @@ export class CircleButton {
 		bg.on('pointerout', () => {
 			this.innerContainer.scale.set(1);
 		});
-
 		this.container.addChild(bg, this.innerContainer);
 	}
 
@@ -37,6 +39,13 @@ export class CircleButton {
 		const sprite = new Sprite(texture);
 		sprite.setSize(this.diameter - BUTTON_ICON_PADDING);
 		sprite.position.set(-sprite.width / 2);
+		sprite.tint = this.isInverted ? 0x000000 : 0xffffff;
+		this.sprite = sprite;
 		this.innerContainer.addChild(sprite);
+	}
+
+	toggleActivation(isInverted: boolean) {
+		this.isInverted = isInverted;
+		this.sprite.tint = this.isInverted ? 0x00ff00 : 0xffffff;
 	}
 }

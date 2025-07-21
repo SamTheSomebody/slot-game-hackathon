@@ -1,50 +1,99 @@
 import { PAYLINES } from '$lib/config/paylines';
+import { PAYTABLE } from '$lib/config/paytable';
 import { SHOWN_SLOTS } from '$lib/config/slot';
-import { reelPositions } from '$lib/stores/gameState';
-import type { Payline, MatchResult, SlotSymbol } from '$lib/types/slot';
+import { SYMBOLS, type SymbolRarity } from '$lib/config/symbols';
 
-export function evaluatePaylines(reelPositions: number[], reels: number[][]): MatchResult[] {
-	const results: MatchResult[] = [];
-	return results;
+type Match = { symbolID: number; paylineID: number; startIndex: number };
+export type CompletedMatch = Match & { payline: number[]; payout: number; rarity: SymbolRarity };
 
-	for (const payline of PAYLINES) {
-		const symbols = payline.map((row, col) => reels[row][col]);
-		const first = symbols[0];
-		let count = 1;
+export function evaluatePaylines(reelPositions: number[], reels: number[][]): CompletedMatch[] {
+	const activeSymbols = getActiveReelSymbols(reelPositions, reels);
 
-		for (let i = 1; i < symbols.length; i++) {
-			if (symbols[i] === first) {
-				count++;
-			} else {
-				break;
+	const ROWS = activeSymbols[0].length;
+	const REELS = activeSymbols.length;
+
+	let activeMatches: Match[] = [];
+	const completedMatches: Record<number, CompletedMatch> = [];
+
+	for (let x = 0; x < REELS; x++) {
+		const newMatches: Match[] = [];
+		if (x < 3) {
+			for (let y = 0; y < ROWS; y++) {
+				for (let i = 0; i < PAYLINES.length; i++) {
+					const line = PAYLINES[i];
+					if (line[x] == y) {
+						const newMatch: Match = { symbolID: activeSymbols[x][y], paylineID: i, startIndex: x };
+						newMatches.push(newMatch);
+					}
+				}
 			}
 		}
 
-		if (count >= 3) {
-			results.push({
-				payline,
-				symbol: first,
-				count,
-				payout: getPayout(first, count)
-			});
+		console.log(`Found ${newMatches.length} new matches in iteration ${x}`);
+
+		const matchesToRemove: number[] = [];
+		for (let i = 0; i < activeMatches.length; i++) {
+			const match = activeMatches[i];
+			const line = PAYLINES[match.paylineID];
+			const y = line[x];
+			if (activeSymbols[x][y] !== match.symbolID) {
+				setMatchCompleted(x, match, completedMatches);
+				matchesToRemove.push(i);
+			}
 		}
+
+		console.log(`Found ${matchesToRemove.length} matches to remove in iteration ${x}`);
+
+		matchesToRemove.reverse();
+		for (const index of matchesToRemove) {
+			activeMatches.splice(index, 1);
+		}
+
+		activeMatches = [...activeMatches, ...newMatches];
+		console.log(`Current have ${activeMatches.length} active matches in iteration ${x}`);
 	}
 
-	return results;
-}
-
-function getPayout(symbol: SlotSymbol, count: number): number {
-	const base = 10;
-	return base * count;
-}
-
-function getActiveReelSymbols(reelPosition: number, reel: number[]): number[] {
-	const ids = [];
-	//The first slot is the hidden one
-	for (let i = 1; i < SHOWN_SLOTS; i++) {
-		const index = (reelPosition + i) % reel.length;
-		const id = reel[index];
-		ids.push(id);
+	for (const match of activeMatches) {
+		setMatchCompleted(REELS, match, completedMatches);
 	}
-	return ids;
+
+	console.log(`Found ${Object.keys(completedMatches).length} match(es)!`);
+	for (const match of Object.values(completedMatches)) {
+		console.log(match);
+	}
+	return Object.values(completedMatches);
+}
+
+function setMatchCompleted(
+	x: number,
+	match: Match,
+	completedMatches: Record<number, CompletedMatch>
+) {
+	const len = x - match.startIndex;
+	if (len < 3) {
+		return;
+	}
+	const rarity = SYMBOLS[match.symbolID].rarity;
+	const payout = PAYTABLE[rarity].payouts[len];
+	const payline = PAYLINES[match.paylineID].slice(match.startIndex, match.startIndex + len);
+	const completedMatch: CompletedMatch = { ...match, payline: payline, payout, rarity };
+	if (match.symbolID in completedMatches && completedMatches[match.symbolID].payout > payout) {
+		return;
+	}
+	completedMatches[match.symbolID] = completedMatch;
+}
+
+function getActiveReelSymbols(reelPositions: number[], reels: number[][]): number[][] {
+	const activeSymbols: number[][] = [];
+	for (let i = 0; i < reels.length; i++) {
+		const ids = [];
+		//Last slot is hidden
+		for (let j = 0; j < SHOWN_SLOTS - 1; j++) {
+			const index = (reelPositions[i] - j - 2 + reels[i].length) % reels[i].length;
+			const id = reels[i][index];
+			ids.push(id);
+		}
+		activeSymbols.push(ids);
+	}
+	return activeSymbols;
 }
