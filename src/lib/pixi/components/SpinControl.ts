@@ -12,13 +12,18 @@ import {
 	type Payout
 } from '$lib/stores/gameState';
 
+/**
+ * @param onInsufficientBalance Optional callback to trigger when the user tries to spin with insufficient balance.
+ */
 export class SpinControl {
 	private canSpin = true;
 	private currentBet = 1.25;
 	private currentBalance = 100;
 	private reelPositions: number[] = [];
+	private onInsufficientBalance?: () => void;
 
-	constructor() {
+	constructor(onInsufficientBalance?: () => void) {
+		this.onInsufficientBalance = onInsufficientBalance;
 		reelsSpinning.subscribe((reelsSpinning) => this.completeSpin(reelsSpinning));
 		spinRequested.subscribe((isRequested) => this.startSpin(isRequested));
 		betState.subscribe(({ currentBet }) => {
@@ -62,7 +67,9 @@ export class SpinControl {
 			return;
 		}
 		if (this.currentBet > this.currentBalance) {
-			//TODO not enough balance error
+			if (this.onInsufficientBalance) {
+				this.onInsufficientBalance();
+			}
 			return;
 		}
 		spinInitiated.set(true);

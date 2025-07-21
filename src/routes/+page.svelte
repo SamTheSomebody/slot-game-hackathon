@@ -5,13 +5,19 @@
 	import { menuRequested } from '$lib/stores/gameState';
 	import Menu from '$lib/svelte/components/menu/Menu.svelte';
 	import { fade, scale } from 'svelte/transition';
+	import InsufficientBalanceAlert from '$lib/svelte/components/InsufficientBalanceAlert.svelte';
 
 	let container: HTMLDivElement;
 	let app: App;
+	let showInsufficientBalance = false;
+
+	function handleInsufficientBalance() {
+		showInsufficientBalance = true;
+	}
 
 	onMount(async () => {
 		app = new App();
-		await app.init(container);
+		await app.init(container, handleInsufficientBalance);
 	});
 
 	onDestroy(() => {
@@ -21,6 +27,7 @@
 
 <div class="game-container" style="width: {DISPLAY.width}px; height: {DISPLAY.height}px;">
 	<div bind:this={container}></div>
+	<InsufficientBalanceAlert visible={showInsufficientBalance} close={() => (showInsufficientBalance = false)} />
 	{#if $menuRequested}
 		<btn
 			role="menu"

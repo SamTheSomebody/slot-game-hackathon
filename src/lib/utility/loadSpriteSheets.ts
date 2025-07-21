@@ -7,10 +7,10 @@ export async function loadSpriteSheets(name: string, path: string): Promise<Spri
 	try {
 		const sheet = (await Assets.load(url)) as Spritesheet;
 		sheets.push(sheet);
-	} catch (err) {
+	} catch (err: unknown) {
 		console.log(
 			'There may be multiple sprite sheets! Attempting to find files with numbered extension.\n' +
-				err
+			(err instanceof Error ? err.message : String(err))
 		);
 		let i = 0;
 		while (true) {
@@ -19,13 +19,13 @@ export async function loadSpriteSheets(name: string, path: string): Promise<Spri
 				const s = (await Assets.load(url)) as Spritesheet;
 				sheets.push(s);
 				i++;
-			} catch (err) {
+			} catch (err: unknown) {
 				if (i === 0) {
 					console.error(
-						'No spritesheets found! You might have an incorrect path or file name. \n' + err
+						'No spritesheets found! You might have an incorrect path or file name. \n' + (err instanceof Error ? err.message : String(err))
 					);
 				}
-				console.log(`Found ${i} spritesheets for ${name}.\n${err}`);
+				console.log(`Found ${i} spritesheets for ${name}.\n${err instanceof Error ? err.message : String(err)}`);
 				break;
 			}
 		}

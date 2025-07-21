@@ -9,18 +9,18 @@ export type CompletedMatch = Match & { payline: number[]; payout: number; rarity
 export function evaluatePaylines(reelPositions: number[], reels: number[][]): CompletedMatch[] {
 	const activeSymbols = getActiveReelSymbols(reelPositions, reels);
 
-	const ROWS = activeSymbols[0].length;
-	const REELS = activeSymbols.length;
+	const ROWS: number = activeSymbols[0].length;
+	const REELS: number = activeSymbols.length;
 
 	let activeMatches: Match[] = [];
-	const completedMatches: Record<number, CompletedMatch> = [];
+	const completedMatches: Record<number, CompletedMatch> = {};
 
 	for (let x = 0; x < REELS; x++) {
 		const newMatches: Match[] = [];
 		if (x < 3) {
 			for (let y = 0; y < ROWS; y++) {
 				for (let i = 0; i < PAYLINES.length; i++) {
-					const line = PAYLINES[i];
+					const line: number[] = PAYLINES[i];
 					if (line[x] == y) {
 						const newMatch: Match = { symbolID: activeSymbols[x][y], paylineID: i, startIndex: x };
 						newMatches.push(newMatch);
@@ -33,9 +33,9 @@ export function evaluatePaylines(reelPositions: number[], reels: number[][]): Co
 
 		const matchesToRemove: number[] = [];
 		for (let i = 0; i < activeMatches.length; i++) {
-			const match = activeMatches[i];
-			const line = PAYLINES[match.paylineID];
-			const y = line[x];
+			const match: Match = activeMatches[i];
+			const line: number[] = PAYLINES[match.paylineID];
+			const y: number = line[x];
 			if (activeSymbols[x][y] !== match.symbolID) {
 				setMatchCompleted(x, match, completedMatches);
 				matchesToRemove.push(i);
@@ -68,14 +68,14 @@ function setMatchCompleted(
 	x: number,
 	match: Match,
 	completedMatches: Record<number, CompletedMatch>
-) {
-	const len = x - match.startIndex;
+): void {
+	const len: number = x - match.startIndex;
 	if (len < 3) {
 		return;
 	}
-	const rarity = SYMBOLS[match.symbolID].rarity;
-	const payout = PAYTABLE[rarity].payouts[len];
-	const payline = PAYLINES[match.paylineID].slice(match.startIndex, match.startIndex + len);
+	const rarity: SymbolRarity = SYMBOLS[match.symbolID].rarity;
+	const payout: number = PAYTABLE[rarity].payouts[len];
+	const payline: number[] = PAYLINES[match.paylineID].slice(match.startIndex, match.startIndex + len);
 	const completedMatch: CompletedMatch = { ...match, payline: payline, payout, rarity };
 	if (match.symbolID in completedMatches && completedMatches[match.symbolID].payout > payout) {
 		return;
@@ -86,11 +86,11 @@ function setMatchCompleted(
 function getActiveReelSymbols(reelPositions: number[], reels: number[][]): number[][] {
 	const activeSymbols: number[][] = [];
 	for (let i = 0; i < reels.length; i++) {
-		const ids = [];
+		const ids: number[] = [];
 		//Last slot is hidden
 		for (let j = 0; j < SHOWN_SLOTS - 1; j++) {
-			const index = (reelPositions[i] - j - 2 + reels[i].length) % reels[i].length;
-			const id = reels[i][index];
+			const index: number = (reelPositions[i] - j - 2 + reels[i].length) % reels[i].length;
+			const id: number = reels[i][index];
 			ids.push(id);
 		}
 		activeSymbols.push(ids);

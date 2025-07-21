@@ -12,13 +12,14 @@ import { loadImages } from '$lib/utility/loadImages';
 export class App {
 	app: Application;
 	stage: Container;
+	private spinControl?: SpinControl;
 
 	constructor() {
 		this.app = new Application();
 		this.stage = this.app.stage;
 	}
 
-	async init(container: HTMLElement) {
+	async init(container: HTMLElement, onInsufficientBalance?: () => void): Promise<void> {
 		await this.app.init({
 			background: '#000000',
 			width: DISPLAY.width,
@@ -43,13 +44,13 @@ export class App {
 		await controlPanel.load();
 		controlPanel.container.zIndex = 99;
 
-		const spinControl = new SpinControl();
-		await spinControl.load();
+		this.spinControl = new SpinControl(onInsufficientBalance);
+		await this.spinControl.load();
 
 		this.stage.addChild(environment.container, reels.container, foreground, controlPanel.container);
 	}
 
-	destroy() {
+	destroy(): void {
 		this.app.destroy(true, { children: true });
 	}
 }
