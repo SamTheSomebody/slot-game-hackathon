@@ -1,4 +1,6 @@
-# 5x3 Slot Game take home (successful)
+# Interactive 5x3 Slot Game (Technical Take-Home – Successful Submission)
+
+This project was completed as part of a take-home technical test and led to a successful job offer. Built with PixiJS and Svelte, it demonstrates my ability to design and implement a complete slot game loop with mock symbol data, animations, and game state management.
 
 The console provides insight into the game's internal processes. You may notice several instances where sprite sheets are reported as "not found" during loading; this is expected behavior. Optimizing sprite sheet layouts was considered out of scope for this project. The current fallback logic attempts to load a single sprite sheet type (if available); failing that, it tries loading multiple types until a failure occurs.
 
