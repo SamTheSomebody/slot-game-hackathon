@@ -1,4 +1,4 @@
-# TwistGaming Takehome: 5x3 Slot Game
+# 5x3 Slot Game take home for a successful job interview
 
 The console provides insight into the game's internal processes. You may notice several instances where sprite sheets are reported as "not found" during loading; this is expected behavior. Optimizing sprite sheet layouts was considered out of scope for this project. The current fallback logic attempts to load a single sprite sheet type (if available); failing that, it tries loading multiple types until a failure occurs.
 
